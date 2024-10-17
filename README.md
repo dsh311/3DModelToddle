@@ -1,7 +1,7 @@
 # 3DModelToddle
 3D model loader and manipulator. Loads formats .obj, .stl, and .X3D.
 
-![Mesh TreeView](q3DModelToddle_TreeSelect.gif)
+![Mesh TreeView](3DModelToddle_TreeSelect.gif)
 The model hierarchy is displayed in a tree view, allowing you to explore the structure. Selecting an item in the tree highlights the corresponding mesh in the 3D model, and vice versa.
 
 ![Mesh Selection](3DModelToddle_MeshSelect.gif)
