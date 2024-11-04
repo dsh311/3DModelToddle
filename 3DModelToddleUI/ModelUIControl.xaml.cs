@@ -1111,8 +1111,16 @@ namespace _3dTests
 
         private void About_Click(object sender, RoutedEventArgs e)
         {
-            string theMsg = "By David S. Shelley - (2024)" + Environment.NewLine + Environment.NewLine;
-            
+            string theMsg = "© 2024 David S. Shelley. All rights reserved."
+                + Environment.NewLine
+                + Environment.NewLine;
+            theMsg += "This project is licensed under the GNU General Public License v3.0. See the LICENSE file for details."
+                + Environment.NewLine
+                + Environment.NewLine;
+            theMsg += @"This project includes icons from the Tabler Icons repository: (https://github.com/tabler/tabler-icons), licensed under the MIT License."
+                + Environment.NewLine
+                + Environment.NewLine
+                + Environment.NewLine;
 
             (double numVerts, double numTriangles, Point3D maxValues, Point3D minValues) = _sceneCollection.CountVertsAndTriangles(sceneGroup);
             Point3D finalMaxValues = new Point3D(maxValues.X - minValues.X, maxValues.Y - minValues.Y, maxValues.Z - minValues.Z);
