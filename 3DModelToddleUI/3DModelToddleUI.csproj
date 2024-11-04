@@ -1,0 +1,68 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+	<UseWindowsForms>true</UseWindowsForms>
+    <RootNamespace>_3dTests</RootNamespace>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="images\about.png" />
+    <None Remove="images\camera.png" />
+    <None Remove="images\center.png" />
+    <None Remove="images\color.png" />
+    <None Remove="images\download.png" />
+    <None Remove="images\download2.png" />
+    <None Remove="images\fullscreen.png" />
+    <None Remove="images\lightsoff.png" />
+    <None Remove="images\lightson.png" />
+    <None Remove="images\moveoff.png" />
+    <None Remove="images\moveon.png" />
+    <None Remove="images\openfolder.png" />
+    <None Remove="images\panelhide.png" />
+    <None Remove="images\panelshow.png" />
+    <None Remove="images\properties.png" />
+    <None Remove="images\rotaterightoff.png" />
+    <None Remove="images\rotaterighton.png" />
+    <None Remove="images\rotateverticallyoff.png" />
+    <None Remove="images\rotateverticallyon.png" />
+    <None Remove="images\selectoff.png" />
+    <None Remove="images\selecton.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ModelLoader\ModelLoader.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="images\about.png" />
+    <Resource Include="images\camera.png" />
+    <Resource Include="images\center.png" />
+    <Resource Include="images\color.png" />
+    <Resource Include="images\download.png" />
+    <Resource Include="images\download2.png" />
+    <Resource Include="images\fullscreen.png" />
+    <Resource Include="images\lightsoff.png" />
+    <Resource Include="images\lightson.png" />
+    <Resource Include="images\moveoff.png" />
+    <Resource Include="images\moveon.png" />
+    <Resource Include="images\openfolder.png" />
+    <Resource Include="images\panelhide.png" />
+    <Resource Include="images\properties.png" />
+    <Resource Include="images\rotaterightoff.png" />
+    <Resource Include="images\rotaterighton.png" />
+    <Resource Include="images\panelshow.png" />
+    <Resource Include="images\rotateverticallyon.png" />
+    <Resource Include="images\rotateverticallyoff.png" />
+    <Resource Include="images\selectoff.png" />
+    <Resource Include="images\selecton.png" />
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="mkdir &quot;$(TargetDir)Licenses&quot;&#xD;&#xA;copy &quot;$(ProjectDir)images\LICENSE.txt&quot; &quot;$(TargetDir)Licenses\LICENSE_tabler-icons.txt&quot;" />
+  </Target>
+
+</Project>

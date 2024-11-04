@@ -1,0 +1,420 @@
+﻿<UserControl x:Class="_3dTests.ModelUIControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:_3dTests"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+            MouseWheel="Viewport3D_MouseWheel"
+            MouseMove="Window_MouseMove"
+            MouseDown="Window_MouseDown"
+            MouseUp="Window_MouseUp"
+            SizeChanged="Window_SizeChanged"
+             >
+
+    <UserControl.ContextMenu>
+        <ContextMenu x:Name="MyContextMenu">
+            <MenuItem Header="Hide Mesh" Click="HideMesh_Click"/>
+            <MenuItem Header="Isolate Mesh" Click="IsolateMesh_Click"/>
+            <Separator />
+            <MenuItem Header="Rotate Horizontally" Click="RotateHorz_Click"/>
+            <MenuItem Header="Rotate Vertically" Click="RotateVert_Click"/>
+        </ContextMenu>
+    </UserControl.ContextMenu>
+
+    <DockPanel x:Name="mainPanel" Background="#4D4D4D" LastChildFill="True">
+
+        <Grid Background="#0D1117"
+              x:Name="topBar"
+              DockPanel.Dock="Top"
+              Height="32"
+              >
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="520" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Orientation="Horizontal" Grid.Column="0" >
+                <Button Click="LoadModel_Click"
+                        ToolTip="Load model"
+                        BorderBrush="Transparent" 
+                        BorderThickness="0" 
+                        Background="Transparent">
+                    <Image Width="32" Height="32" Source="pack://application:,,,/Images/openfolder.png" />
+                </Button>
+                <Button Click="Save_Click"
+                        Focusable="False"
+                        IsTabStop="False"
+                        ToolTip="Save model"
+                        BorderBrush="Transparent" 
+                        BorderThickness="0" 
+                        Background="Transparent">
+                    <Image Width="32" Height="32" Source="pack://application:,,,/Images/download2.png"
+                           ToolTip="Save model"/>
+                </Button>
+                <ProgressBar 
+                        x:Name="progBar"
+                        IsEnabled="False"
+                        IsIndeterminate="False"
+                        Width="32" Height="32"
+                        Focusable="False"
+                        IsTabStop="False"
+                        BorderBrush="Transparent" 
+                        BorderThickness="0" 
+                        Background="Transparent"
+                        IsHitTestVisible="False">
+                </ProgressBar>
+                <Button Click="SelectToggle_Click"
+                        x:Name="selectoggle"
+                        Focusable="False"
+                        IsTabStop="False"
+                        ToolTip="Select"
+                        BorderBrush="Transparent" 
+                        BorderThickness="0" 
+                        Background="Transparent">
+                    <Image Width="32" Height="32"
+                           x:Name="selectImg"
+                           Source="pack://application:,,,/Images/selecton.png"
+                           ToolTip="Select"/>
+                </Button>
+                <Button Click="MoveToggle_Click"
+                        x:Name="movetoggle"
+                        Focusable="False"
+                        IsTabStop="False"
+                        ToolTip="Move"
+                        BorderBrush="Transparent" 
+                        BorderThickness="0" 
+                        Background="Transparent">
+                    <Image Width="32" Height="32"
+                           x:Name="moveImg"
+                           Source="pack://application:,,,/Images/moveoff.png"
+                           ToolTip="Move"/>
+                </Button>
+                <Button Width="32" Height="32"
+                        Focusable="False"
+                        IsTabStop="False"
+                        ToolTip="Toggle panel"
+                        BorderBrush="Transparent" 
+                        BorderThickness="0" 
+                        Background="Transparent"
+                        IsHitTestVisible="False">
+                </Button>
+                <Button Click="RotateHorzToggle_Click"
+                        x:Name="rotateHorzToggle"
+                        Focusable="False"
+                        IsTabStop="False"
+                        ToolTip="Rotate Right"
+                        BorderBrush="Transparent" 
+                        BorderThickness="0" 
+                        Background="Transparent">
+                    <Image Width="32" Height="32" x:Name="rotateHorzImg" Source="pack://application:,,,/Images/rotaterightoff.png"
+                               ToolTip="Rotate Right"/>
+                </Button>
+                <Button Click="RotateVertToggle_Click"
+                        x:Name="rotateVertToggle"
+                        Focusable="False"
+                        IsTabStop="False"
+                        ToolTip="Rotate Vertically"
+                        BorderBrush="Transparent" 
+                        BorderThickness="0" 
+                        Background="Transparent">
+                    <Image Width="32" Height="32" x:Name="rotateVertImg" Source="pack://application:,,,/Images/rotateverticallyoff.png"
+                               ToolTip="Rotate Vertically"/>
+                </Button>
+                <Button Click="LightsToggle_Click"
+                        x:Name="lightToggle"
+                        Focusable="False"
+                        IsTabStop="False"
+                        ToolTip="Global Illuminate"
+                        BorderBrush="Transparent" 
+                        BorderThickness="0" 
+                        Background="Transparent">
+                    <Image Width="32" Height="32" x:Name="lightImg" Source="pack://application:,,,/Images/lightsoff.png"
+                               ToolTip="Global Illuminate"/>
+                </Button>
+                <Button Click="Recenter_Click"
+                        Focusable="False"
+                        IsTabStop="False"
+                        ToolTip="Load model"
+                        BorderBrush="Transparent" 
+                        BorderThickness="0" 
+                        Background="Transparent">
+                    <Image Width="32" Height="32" Source="pack://application:,,,/Images/center.png"
+                               ToolTip="Center camera"/>
+                </Button>
+                <Button Click="SaveViewPort_Click"
+                        Focusable="False"
+                        IsTabStop="False"
+                        ToolTip="Load model"
+                        BorderBrush="Transparent" 
+                        BorderThickness="0" 
+                        Background="Transparent">
+                    <Image Width="32" Height="32" Source="pack://application:,,,/Images/camera.png"
+                           ToolTip="Save image"/>
+                </Button>
+                <Button Click="BackgroundColor_Click"
+                        Focusable="False"
+                        IsTabStop="False"
+                        ToolTip="Load model"
+                        BorderBrush="Transparent" 
+                        BorderThickness="0" 
+                        Background="Transparent">
+                    <Image Width="32" Height="32" Source="pack://application:,,,/Images/color.png"
+                           ToolTip="Background Color"/>
+                </Button>
+                <Button Width="32" Height="32"
+                        Focusable="False"
+                        IsTabStop="False"
+                        ToolTip="Toggle panel"
+                        BorderBrush="Transparent" 
+                        BorderThickness="0" 
+                        Background="Transparent"
+                        IsHitTestVisible="False">
+                </Button>
+                <Button Click="LeftPanelToggle_Click"
+                        x:Name="leftPanelToggle"
+                        Focusable="False"
+                        IsTabStop="False"
+                        ToolTip="Toggle panel"
+                        BorderBrush="Transparent" 
+                        BorderThickness="0" 
+                        Background="Transparent">
+                    <Image Width="32" Height="32"
+                           x:Name="panelshowImg"
+                           Source="pack://application:,,,/Images/panelshow.png"
+                           ToolTip="Toggle panel"/>
+                </Button>
+                <Button Click="About_Click"
+                            Focusable="False"
+                            IsTabStop="False"
+                            ToolTip="About"
+                            BorderBrush="Transparent" 
+                            BorderThickness="0" 
+                            Background="Transparent">
+                    <Image Width="32" Height="32"
+                               Source="pack://application:,,,/Images/about.png"
+                               ToolTip="About"/>
+                </Button>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right" >
+
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Camera: "
+                                Foreground="#C2C3C5"
+                                Height="10"
+                                Background="#0D1117"
+                                Padding="0,0,0,0"
+                                FontSize="7"></Label>
+                        <TextBox x:Name="camLocX"
+                                 Width="30"
+                                 TextAlignment="Left"
+                                 Height="10"
+                                 BorderBrush="Transparent" 
+                                 BorderThickness="0" 
+                                 Background="#0D1117"
+                                 Foreground="#C2C3C5"
+                                 Padding="0,0,0,0"
+                                 FontSize="7"></TextBox>
+                        <TextBox x:Name="camLocY"
+                                 Width="30"
+                                 TextAlignment="Left"
+                                 Height="10"
+                                 BorderBrush="Transparent" 
+                                 BorderThickness="0" 
+                                 Background="#0D1117"
+                                 Foreground="#C2C3C5"
+                                 Padding="0,0,0,0"
+                                 FontSize="7"></TextBox>
+                        <TextBox x:Name="camLocZ"
+                                 Width="30"
+                                 TextAlignment="Left"
+                                 Height="10"
+                                 BorderBrush="Transparent" 
+                                 BorderThickness="0" 
+                                 Background="#0D1117"
+                                 Foreground="#C2C3C5"
+                                 Padding="0,0,0,0"
+                                 FontSize="7"></TextBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Camera Angles: "
+                                Foreground="#C2C3C5"
+                                Height="7"
+                                Background="#0D1117"
+                                Padding="0,0,0,0"
+                                FontSize="7"></Label>
+                        <TextBox x:Name="camAngle"
+                                 Width="85"
+                                 TextAlignment="Left"
+                                 Height="10"
+                                 BorderBrush="Transparent" 
+                                 BorderThickness="0" 
+                                 Background="#0D1117"
+                                 Foreground="#C2C3C5"
+                                 Padding="0,0,0,0"
+                                 FontSize="7"></TextBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Mesh Count: "
+                                Foreground="#C2C3C5"
+                                Height="7"
+                                Background="#0D1117"
+                                Padding="0,0,0,0"
+                                FontSize="7"></Label>
+                        <TextBox x:Name="meshCount"
+                                 Width="85"
+                                 TextAlignment="Left"
+                                 Height="10"
+                                 BorderBrush="Transparent" 
+                                 BorderThickness="0" 
+                                 Background="#0D1117"
+                                 Foreground="#C2C3C5"
+                                 Padding="0,0,0,0"
+                                 FontSize="7"></TextBox>
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Mouse:"
+                                Foreground="#C2C3C5"
+                                Height="10"
+                                Background="#0D1117"
+                                Padding="0,0,0,0"
+                                FontSize="7"></Label>
+                        <TextBox x:Name="camInfo"
+                                 Width="50"
+                                 TextAlignment="Left"
+                                 Height="10"
+                                 BorderBrush="Transparent" 
+                                 BorderThickness="0" 
+                                 Background="#0D1117"
+                                 Foreground="#C2C3C5"
+                                 Padding="0,0,0,0"
+                                 FontSize="7"></TextBox>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Viewport:"
+                                Foreground="#C2C3C5"
+                                Height="10"
+                                Background="#0D1117"
+                                Padding="0,0,0,0"
+                                FontSize="7"></Label>
+                        <TextBox x:Name="viewportInfo"
+                                 Width="90"
+                                 TextAlignment="Left"
+                                 Height="10"
+                                 BorderBrush="Transparent" 
+                                 BorderThickness="0" 
+                                 Background="#0D1117"
+                                 Foreground="#C2C3C5"
+                                 Padding="0,0,0,0"
+                                 FontSize="7">
+                        </TextBox>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="Vert #: "
+                                    Foreground="#C2C3C5"
+                                    Height="7"
+                                    Background="#0D1117"
+                                    Padding="0,0,0,0"
+                                    FontSize="7"></Label>
+                            <TextBox x:Name="vertCount"
+                                     Width="40"
+                                     TextAlignment="Left"
+                                     Height="10"
+                                     BorderBrush="Transparent" 
+                                     BorderThickness="0" 
+                                     Background="#0D1117"
+                                     Foreground="#C2C3C5"
+                                     Padding="0,0,0,0"
+                                     FontSize="7"></TextBox>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="Triangle #: "
+                                    Foreground="#C2C3C5"
+                                    Height="7"
+                                    Background="#0D1117"
+                                    Padding="0,0,0,0"
+                                    FontSize="7"></Label>
+                            <TextBox x:Name="triangleCount"
+                                     Width="40"
+                                     TextAlignment="Left"
+                                     Height="10"
+                                     BorderBrush="Transparent" 
+                                     BorderThickness="0" 
+                                     Background="#0D1117"
+                                     Foreground="#C2C3C5"
+                                     Padding="0,0,0,0"
+                                     FontSize="7"></TextBox>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+
+        <Grid x:Name="leftPanel"
+                DockPanel.Dock="Left"
+                Background="#0D1117"
+                Width="250"
+                Visibility="Collapsed"
+                >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <TreeView x:Name="theTreeView"
+                    SelectedItemChanged="theTreeView_SelectedItemChanged"
+                    Grid.Column="0"
+                    Foreground="White"
+                    Background="#0D1117"
+                    BorderBrush="Transparent" 
+                    BorderThickness="0" 
+                    >
+                <TreeView.Resources>
+                    <Style TargetType="{x:Type TreeViewItem}">
+                        <Setter Property="Foreground" Value="White"/>
+                        <Setter Property="FontSize" Value="14"/>
+                    </Style>
+                </TreeView.Resources>
+            </TreeView>
+
+        </Grid>
+
+        <!-- GridSplitter to resize the leftPanel Grid -->
+        <GridSplitter x:Name="theGridSplitter" Width="5" 
+                    Background="Gray"
+                    VerticalAlignment="Stretch"
+                    HorizontalAlignment="Stretch"
+                    DockPanel.Dock="Left"
+                    ShowsPreview="True"
+                    ResizeDirection="Columns"
+                    ResizeBehavior="PreviousAndNext"
+                    DragDelta="GridSplitter_DragDelta"
+                    Visibility="Collapsed"
+                  />
+
+        <Viewport3D  Name="myViewport">
+            <!-- The 3D model -->
+            <ModelVisual3D>
+                <ModelVisual3D.Content>
+                    <Model3DGroup x:Name="sceneGroup">
+                        <!--<AmbientLight Color="White"/>-->
+                        <!-- Programatically filled in -->
+                        <!-- Camera-aligned directional light -->
+                        <DirectionalLight Color="White" x:Name="cameraLight" Direction="-1,-1,-1"/>
+                    </Model3DGroup>
+                </ModelVisual3D.Content>
+            </ModelVisual3D>
+        </Viewport3D>
+
+    </DockPanel>
+</UserControl>
