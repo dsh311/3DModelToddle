@@ -1111,7 +1111,7 @@ namespace _3dTests
 
         private void About_Click(object sender, RoutedEventArgs e)
         {
-            string theMsg = "© 2024 David S. Shelley. All rights reserved."
+            string theMsg = "© 2024 David Shelley. All rights reserved."
                 + Environment.NewLine
                 + Environment.NewLine;
             theMsg += "This project is licensed under the GNU General Public License v3.0. See the LICENSE file for details."
