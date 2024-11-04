@@ -8,7 +8,7 @@ This project uses images from the [Tabler Icons repository](https://github.com/t
 
 ---
 ## Mesh TreeView Selection
-* The model hierarchy is displayed in a tree view, allowing you to explore the structure.  
+* The model hierarchy is displayed in a tree view, allowing you to explore the structure if the model includes structure.  
 * Selecting an item in the tree highlights the corresponding mesh in the 3D model, and vice versa.  
 
   
