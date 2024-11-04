@@ -3,6 +3,8 @@
 * 3D model loader and manipulator written in C#.  
 * Supported formats .obj, .stl(no textures), and .X3D(no textures).
 
+## Image Credits
+This project uses images from the [Tabler Icons repository](https://github.com/tabler/tabler-icons). The images are licensed under the MIT License.
 
 ---
 ## Mesh TreeView Selection
