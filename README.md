@@ -1,6 +1,6 @@
 # 3DModelToddle
 ![3DModelToddle](3DModelToddleTabs.gif)  
-* 3D model loader and manipulator written in C#.  
+* 3D model loader and manipulator written in C# and WPF.  
 * Supported formats .obj, .stl(no textures), and .X3D(no textures).
 
 ## Image Credits
