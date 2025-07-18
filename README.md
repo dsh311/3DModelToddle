@@ -1,5 +1,5 @@
 # 3DModelToddle
-![3DModelToddle](3DModelToddleTabs.gif)  
+![3DModelToddle](docs/3DModelToddleTabs.gif)  
 * 3D model loader and manipulator written in C# and WPF.  
 * Supported formats .obj, .stl(no textures), and .X3D(no textures).
 
@@ -12,7 +12,7 @@ This project uses images from the [Tabler Icons repository](https://github.com/t
 * Selecting an item in the tree highlights the corresponding mesh in the 3D model, and vice versa.  
 
   
-![Mesh TreeView](3DModelToddle_TreeSelect.gif)
+![Mesh TreeView](docs/3DModelToddle_TreeSelect.gif)
 
 
 ---
@@ -21,7 +21,7 @@ This project uses images from the [Tabler Icons repository](https://github.com/t
 * Clicking a mesh makes it temporarily transparent.  
 
   
-![Mesh Selection](3DModelToddle_MeshSelect.gif)
+![Mesh Selection](docs/3DModelToddle_MeshSelect.gif)
 
 
 ---
@@ -30,5 +30,5 @@ This project uses images from the [Tabler Icons repository](https://github.com/t
 * To rotate a mesh, select it, right-click, and choose a rotation option from the context menu.  
 
   
-![Mesh Move & Rotate](3DModelToddle_MeshMove.gif)
+![Mesh Move & Rotate](docs/3DModelToddle_MeshMove.gif)
 
